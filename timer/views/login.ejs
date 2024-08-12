@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Register</title>
+    <script src="/js/time.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #timer {
+            text-align: right;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Register</h1>
+    <div id="timer"></div>
+    <form action="/addEmployee" method="post">
+        <input type="text" name="eid" placeholder="Employee ID" required>
+        <input type="text" name="ename" placeholder="Employee Name" required>
+        <input type="number" name="eage" placeholder="Employee Age" required>
+        <input type="text" name="eaddress" placeholder="Employee Address" required>
+        <input type="email" name="email" placeholder="Employee Email" required>
+        <button type="submit">Add Employee</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Employee Age</th>
+                <th>Employee Address</th>
+                <th>Employee Email</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% login.forEach(employee => { %>
+            <tr data-eid="<%= employee.eid %>">
+                <td><%= employee.eid %></td>
+                <td><%= employee.ename %></td>
+                <td><%= employee.eage %></td>
+                <td><%= employee.eaddress %></td>
+                <td><%= employee.email %></td>
+                <td>
+                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            // Delete button click handler
+            $('.delete-btn').click(function(event) {
+                event.preventDefault();
+
+                // Get the employee ID of the row to delete
+                const row = $(this).closest('tr');
+                const eid = row.data('eid');
+
+                // Send an AJAX request to delete the employee
+                $.ajax({
+                    url: '/deleteEmployee',
+                    method: 'POST',
+                    data: { eid: eid },
+                    success: function(response) {
+                        // Remove the row from the table
+                        row.remove();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error deleting employee:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+1.$match:
+
+db.orders.aggregate([
+  { $match: { status: "shipped" } }
+]);
+
+2.$group:
+
+db.orders.aggregate([
+  { $group: { _id: "$customerId", totalAmount: { $sum: "$amount" } } }
+]);
+
+3.$sort:
+
+db.orders.aggregate([
+  { $sort: { orderDate: -1 } }
+]);
+
+4.$project:
+
+db.orders.aggregate([
+  { $project: { orderId: 1, customerId: 1, totalAmount: { $multiply: ["$quantity", "$price"] } } }
+]);
+
+5.$lookup:
+
+db.orders.aggregate([
+  { $lookup: {
+    from: "customers",
+    localField: "customerId",
+    foreignField: "_id",
+    as: "customerInfo"
+  } }
+]);
+
+6.$expr:
+
+  db.collection.find({
+  $expr: {
+    $and: [
+      { $eq: ["$status", "active"] },
+      { $gt: ["$age", 18] }
+    ]
+  }
+})
+
+7.$merge:
+
+  db.products.aggregate([
+  {
+    $merge: {
+      into: "latestPrices",
+      on: "_id",
+      whenMatched: "merge",
+      whenNotMatched: "insert"
+    }
+  }
+])
+
+8.$limit:
+
+  db.products.aggregate([
+  { $sort: { price: -1 } },
+  { $limit: 3 }
+])
+
+9.$skip:
+
+  db.products.aggregate([
+  { $sort: { price: -1 } }, 
+   { $skip: 3 },                
+   { $limit: 2 }              
+  ])
+
+10.$search:
+
+  db.books.aggregate([
+  {
+    $search: {
+      "text": {
+        "query": "adventure",
+        "path": "title"
+      }
+    }
+  }
+])

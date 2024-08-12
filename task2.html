@@ -183,11 +183,11 @@
             var passid = document.login.password;
 
             if (ValidateEmail(email)) {
-                if (passid_validation(passid, 7, 12)) {
+             if (passid_validation(passid, 7, 12)) {
                     alert('Login successful!');
                     window.location.reload();
                     return true;
-                }
+            }
             }
             return false;
         }

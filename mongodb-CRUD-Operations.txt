@@ -1,6 +1,6 @@
 1.Create:
 
-db.student.insertOne({
+i)  db.student.insertOne({
   name: "Meena",
   age: 28,
   email: "Meena@gmail.com",
@@ -9,7 +9,7 @@ db.student.insertOne({
   pincode: 522005
 });
 
-db.student.insertMany([
+ii)  db.student.insertMany([
   { name: "Sai", age: 25, email: "sai@gmail.com",place:"Kerala",Gender:"male",pincode:345600},
   { name: "Aruna", age: 30, email: "aruna@gmail.com",place:"Telangana",Gender:"Female",pincode:256256 },
   { name: "Rama", age: 40, email: "rama@gmail.com",place:"Karnataka",Gender:"male",pincode:522002}
@@ -17,58 +17,59 @@ db.student.insertMany([
 
 2.Retriving the data:
 
-db.student.find();
+i) db.student.find();
 
-db.student.findOne({ name: "meena" });
+ii)  db.student.findOne({ name: "meena" });
 
-db.student.find({ age: { $gt: 30 } });
+iii) db.student.find({ age: { $gt: 30 } });
 
-db.student.find({ age: { $lt: 30 } }, { projection: { name: 1, _id: 0 } });
+iv) db.student.find({ age: { $lt: 30 } }, { projection: { name: 1, _id: 0 } });
 
-db.student.find().sort({ age: -1 });
+v) db.student.find().sort({ age: -1 });
 
-db.student.find({
+vi) db.student.find({
   $or: [
     { age: { $lt: 25 } },
     { name: "Rama" }
   ]
 });
 
-db.student.find(
+vii) db.student.find(
 { age: { $gte: 25, $lte: 35 } }
 );
 
-db.collection.find({ name: { $regex: /^A/, $options: "i" } });
+viii) db.collection.find({ name: { $regex: /^A/, $options: "i" } });
 
 
 3.Update:
-db.student.updateOne(
+i) db.student.updateOne(
   { name: "Renuka" },
   { $set: { age: 31 } }
 );
 
-db.student.updateMany(
+ii) db.student.updateMany(
   { age: { $lt: 30 } },
   { $set: { status: "young" } }
 );
 
-db.student.replaceOne(
+iii) db.student.replaceOne(
   { name: "Meena" },
   { name: "Meena", age: 26, email: "meenakshi@gmail.com" }
 );
 
-db.collection.find(
+iv) db.collection.find(
 { age: { $gte: 40 } }, 
 { projection: { name: 1, age: 1, _id: 0 } }
 );
 
 
 4.Delete:
-db.student.deleteOne({ name: "Sai" });
 
-db.student.deleteMany({ age: { $lt: 30 } });
+i) db.student.deleteOne({ name: "Sai" });
 
-db.student.drop();
+ii) db.student.deleteMany({ age: { $lt: 30 } });
+
+iii) db.student.drop();
 
 
 

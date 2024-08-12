@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My website</title>
+
+   
+    
+
+    <style>
+
+        body {
+            font-family: sans-serif; 
+            line-height: 1.6;
+        }
+
+        
+        .navbar {
+            background-color: royalblue  ;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: coral;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        
+        .hero {
+            background-image: url('gn2.jpg'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: deeppink;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h1 {
+            color: darkslateblue;
+            font-size: 2.5rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+       .about {
+            
+            padding: 50px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .about img {
+            max-width: 90%;
+            height: auto%;
+            margin-bottom: 0px;
+        }
+
+        .about div {
+           
+            flex: 1;
+            padding: 10px;
+        }
+
+        
+.portfolio-filter {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    background-color: #ddd;
+    border: none;
+    color: darkslateblue;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background-color: darkslateblue;
+    color: white;
+}
+
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.portfolio-item img {
+    width: 90%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.portfolio-overlay p {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+
+.portfolio-item:nth-child(1),
+.portfolio-item:nth-child(2) {
+    grid-column: span 6;
+}
+
+.portfolio-item:nth-child(3),
+.portfolio-item:nth-child(4),
+.portfolio-item:nth-child(5) {
+    grid-column: span 4;
+}
+
+.portfolio-item:nth-child(6),
+.portfolio-item:nth-child(7) {
+    grid-column: span 6;
+}
+
+
+@media (max-width: 768px) {
+    .portfolio-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .portfolio-item:nth-child(1),
+    .portfolio-item:nth-child(2) {
+        grid-column: span 12;
+    }
+
+    .portfolio-item:nth-child(3),
+    .portfolio-item:nth-child(4),
+    .portfolio-item:nth-child(5),
+    .portfolio-item:nth-child(6),
+    .portfolio-item:nth-child(7) {
+        grid-column: span 12;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-item {
+        border-radius: 10px;
+    }
+
+    .portfolio-overlay h3 {
+        font-size: 1.2rem;
+    }
+
+    .portfolio-overlay p {
+        font-size: 0.9rem;
+    }
+}
+
+
+[data-lightbox] {
+    position: relative;
+}
+
+[data-lightbox]::after {
+    content: '\f002'; /* Font Awesome search icon */
+    font-family: FontAwesome;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 2rem;
+}
+
+
+@media (max-width: 768px) {
+    .portfolio-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-item {
+        border-radius: 10px;
+    }
+
+    .portfolio-overlay h3 {
+        font-size: 1.2rem;
+    }
+
+    .portfolio-overlay p {
+        font-size: 0.9rem;
+    }
+}
+
+
+        @media screen and (max-width: 768px) {
+            .portfolio-item {
+                width: calc(50% - 40px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .portfolio-item {
+                width: calc(100% - 40px);
+            }
+        }
+
+        
+        .contact {
+            background-color: #f9f9f9;
+            padding: 50px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contact form {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .contact form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact form input,
+        .contact form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .contact form button {
+            background-color: coral;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-info {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .contact-info h4 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: darkslateblue;
+        }
+
+        
+        @media (max-width: 768px) {
+            .about, .portfolio, .contact {
+                flex-direction: column;
+            }
+
+            .portfolio-item {
+                width: 100%;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">Mywebsite</a>
+        <div>
+            <a href="#Home">Home</a>
+            <a href="#About">About</a>
+            <a href="#Portfolio">Menu</a>
+            <a href="#Contact">Contact</a>
+            <a class="btn" href="#GetStarted">Get Started</a>
+        </div>
+    </nav>
+
+    
+    <section class="hero" id="Home">
+        <h1>Creative Solutions for Your Projects</h1>
+        <h2>We bring your ideas to life with innovative design</h2>
+        <a href="#GetStarted" class="btn">Get Started</a>
+        <a href="#" class="btn"><i class="fas fa-play"></i> Watch Video</a>
+    </section>
+
+   
+    <section id="About" class="about">
+        <div>
+            <h1>About Us</h1>
+            <p>We are a team of passionate designers and developers dedicated to creating stunning websites.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <ul>
+                <li><i class="dot"></i> High-quality design and development.</li>
+                <li><i class="dot"></i> Focused on user experience.</li>
+                <li><i class="dot"></i> Commitment to client satisfaction.</li>
+            </ul>
+        </div>
+        <div>
+            <img src="a3.jpg" alt="About Us Image">
+        </div>
+    </section>
+
+    
+<section id="Portfolio" class="portfolio">
+    <div class="portfolio-filter">
+        <button class="filter-btn " >All</button>
+        <button class="filter-btn">Business</button>
+        <button class="filter-btn">Education</button>
+        <button class="filter-btn" >Management</button>
+    </div>
+    <div class="portfolio-container">
+        <div class="portfolio-item">
+            <a href="p1.jpg" data-lightbox="portfolio">
+                <img src="p1.jpg" alt="Project 1">
+                <div class="portfolio-overlay">
+                    <h3>Business</h3>
+                    <p>A business can be described as an organization or enterprising entity that engages in professional, commercial or industrial activities.</p>
+                </div>
+            </a>
+        </div>
+        <div class="portfolio-item">
+            <a href="p2.jpg" data-lightbox="portfolio">
+                <img src="p2.jpg" alt="Project 2">
+                <div class="portfolio-overlay">
+                    <h3>Business</h3>
+                    <p>A business can be described as an organization or enterprising entity that engages in professional, commercial or industrial activities.</p>
+                </div>
+            </a>
+        </div>
+        <div class="portfolio-item">
+            <a href="p3.jpg" data-lightbox="portfolio">
+                <img src="p3.jpg" alt="Project 3">
+                <div class="portfolio-overlay">
+                    <h3>Education</h3>
+                    <p>Education project description.</p>
+                </div>
+            </a>
+        </div>
+        <div class="portfolio-item" >
+            <a href="p4.jpg" data-lightbox="portfolio">
+                <img src="p4.jpg" alt="Project 4">
+                <div class="portfolio-overlay">
+                    <h3>Education</h3>
+                    <p>A business can be described as an organization or enterprising entity that engages in professional, commercial or industrial activities.</p>
+                </div>
+            </a>
+        </div>
+        <div class="portfolio-item" >
+            <a href="p5.jpg" data-lightbox="portfolio">
+                <img src="p5.jpg" alt="Project 5">
+                <div class="portfolio-overlay">
+                    <h3>Management</h3>
+                    <p>A business can be described as an organization or enterprising entity that engages in professional, commercial or industrial activities.</p>
+                </div>
+            </a>
+        </div>
+        <div class="portfolio-item" >
+            <a href="p6.jpg" data-lightbox="portfolio">
+                <img src="p6.jpg" alt="Project 6">
+                <div class="portfolio-overlay">
+                    <h3>Management</h3>
+                    <p>A business can be described as an organization or enterprising entity that engages in professional, commercial or industrial activities.</p>
+                </div>
+            </a>
+        </div>
+        <div class="portfolio-item">
+            <a href="p7.jpg" data-lightbox="portfolio">
+                <img src="p7.jpg" alt="Project 7">
+                <div class="portfolio-overlay">
+                    <h3>Management</h3>
+                    <p>A business can be described as an organization or enterprising entity that engages in professional, commercial or industrial activities.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+    
+    <section id="Contact" class="contact">
+        <div class="contact-info">
+            <h4>Contact Information</h4>
+            <p>Email: contact@myportfolio.com</p>
+            <p>Phone: +123 456 7890</p>
+            <p>Location: 123 Street, City, Country</p>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label>Your Message</label>
+                <textarea id="message" rows="5" placeholder="Enter your message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+   <div class="container1" >
+            <p style="text-align: center;"> &copy;copy right reserved  </p>   
+   </div> 
+    
+
+</body>
+
+</html>

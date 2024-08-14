@@ -1,3 +1,61 @@
+
+/*.Meena tr:nth-child(even){
+  background-color: AliceBlue;
+  color:DarkSlateGray;
+  text-align: centre;
+}
+
+.Meena tr:nth-child(odd){
+  background-color: Lavender;
+  color: DarkSlateGray;
+  text-align: centre;
+}*/
+td, th {
+    padding: 10px;
+    text-align: left;
+    border: 3px solid RosyBrown;
+}
+
+.Meena tr:nth-child(1){
+  background-color: blueviolet;
+  color: DarkSlateGray;
+  text-align: centre;
+}
+.Meena tr:nth-child(2){
+  background-color: indigo;
+  color: floralwhite;
+  text-align: centre;
+}
+.Meena tr:nth-child(3){
+  background-color: dodgerblue;
+  color: DarkSlateGray;
+  text-align: centre;
+}
+.Meena tr:nth-child(4){
+  background-color: lightgreen;
+  color: DarkSlateGray;
+  text-align: centre;
+}
+.Meena tr:nth-child(5){
+  background-color: yellow;
+  color: DarkSlateGray;
+  text-align: centre;
+}
+.Meena tr:nth-child(6){
+  background-color: orange;
+  color: DarkSlateGray;
+  text-align: centre;
+}
+.Meena tr:nth-child(7){
+  background-color: orangered;
+  color: DarkSlateGray;
+  text-align: centre;
+}
+
+
+
+
+
 .App {
   text-align: center;
 }
